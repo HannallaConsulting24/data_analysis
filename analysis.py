@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Load data
-file_path = r"processed_el3mdany1.xlsx"
+file_path = r"C:\Users\Administrator\Downloads\processed_el3mdany1.xlsx"
 df = pd.read_excel(file_path)
 
 # Check required columns
@@ -14,6 +14,9 @@ if not all(col in df.columns for col in required_columns):
 
 # Ensure class names are sorted and displayed correctly
 df['class'] = df['class'].astype(str)  # Convert to string to avoid selection issues
+
+# Remove empty values from 'Ins' column
+df = df.dropna(subset=['Ins'])
 
 # Calculate changes
 df['Net Profit Change'] = df['Highest Net Profit'] - df['Net Profit']
@@ -31,7 +34,7 @@ st.markdown("4. **Check summary statistics** for a deeper understanding of trend
 
 # Filter for selected INS and Class
 st.subheader("🔎 Select an Insurance and Class for Analysis")
-ins_selected = st.selectbox("Select an INS", sorted(df['Ins'].unique()))
+ins_selected = st.selectbox("Select an INS", sorted(df['Ins'].dropna().unique()))
 class_selected = st.selectbox("Select a Class", sorted(df[df['Ins'] == ins_selected]['class'].unique()))
 
 df_filtered = df[(df['Ins'] == ins_selected) & (df['class'] == class_selected)]
