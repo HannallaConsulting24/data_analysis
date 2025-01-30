@@ -12,6 +12,9 @@ if not all(col in df.columns for col in required_columns):
     st.error("⚠️ The file does not contain the required columns for analysis.")
     st.stop()
 
+# Ensure class names are sorted and displayed correctly
+df['class'] = df['class'].astype(str)  # Convert to string to avoid selection issues
+
 # Calculate changes
 df['Net Profit Change'] = df['Highest Net Profit'] - df['Net Profit']
 
@@ -28,8 +31,8 @@ st.markdown("4. **Check summary statistics** for a deeper understanding of trend
 
 # Filter for selected INS and Class
 st.subheader("🔎 Select an Insurance and Class for Analysis")
-ins_selected = st.selectbox("Select an INS", df['Ins'].unique())
-class_selected = st.selectbox("Select a Class", df[df['Ins'] == ins_selected]['class'].unique())
+ins_selected = st.selectbox("Select an INS", sorted(df['Ins'].unique()))
+class_selected = st.selectbox("Select a Class", sorted(df[df['Ins'] == ins_selected]['class'].unique()))
 
 df_filtered = df[(df['Ins'] == ins_selected) & (df['class'] == class_selected)]
 
