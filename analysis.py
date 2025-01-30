@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Load data
-file_path = r"C:\Users\Administrator\Downloads\processed_el3mdany1.xlsx"
+file_path = r"processed_el3mdany1.xlsx"
 df = pd.read_excel(file_path)
 
 # Check required columns
