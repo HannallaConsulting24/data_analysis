@@ -4,7 +4,7 @@ import plotly.express as px
 
 # Load data
 file_path = r"final3.xlsx"
-df = pd.read_excel(file_path)
+df = pd.read_excel(file_path, dtype={'NDC': str, 'NDC for Highest Net Profit': str})  # Ensure NDC is treated as string
 
 # Check required columns
 required_columns = ['Script','NDC','Ins', 'class','Prescriber', 'Net Profit','NDC for Highest Net Profit', 'Highest Net Profit']
