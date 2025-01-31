@@ -42,7 +42,7 @@ df_filtered = df[(df['Ins'] == ins_selected) & (df['class'] == class_selected)]
 # Display enhanced data table
 st.subheader(f"📊 Detailed Data Table for {ins_selected} - {class_selected}")
 st.write("This table includes additional details like Script ID, NDC, and Prescriber.")
-st.dataframe(df_filtered[['Script', 'NDC', 'NDC for Highest Net Profit', 'Prescriber', 'Ins', 'class', 'Net Profit', 'Highest Net Profit', 'Net Profit Change']])
+st.dataframe(df_filtered[['Script','NDC','Ins', 'class','Prescriber', 'Net Profit','NDC for Highest Net Profit', 'Highest Net Profit' , 'Net Profit Change']])
 
 # Net Profit Change Chart
 st.subheader("📈 Net Profit Before vs. After by Class")
